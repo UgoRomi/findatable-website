@@ -1,12 +1,16 @@
 import NextAuth from 'next-auth';
-import AppleProvider from 'next-auth/providers/apple';
+import GoogleProvider from 'next-auth/providers/google';
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
+
 export default NextAuth({
-  // Configure one or more authentication providers
+  adapter: PrismaAdapter(prisma),
   providers: [
-    AppleProvider({
-      clientId: process.env.GITHUB_ID as string,
-      clientSecret: process.env.GITHUB_SECRET as string,
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
-    // ...add more providers here
   ],
 });
