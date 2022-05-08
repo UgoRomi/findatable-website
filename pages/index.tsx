@@ -1,8 +1,5 @@
-import { List, ListIcon, ListItem, UnorderedList } from '@chakra-ui/react';
+import { List, ListIcon, ListItem } from '@chakra-ui/react';
 import type { NextPage } from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
 import { MdCheckCircle, MdSettings } from 'react-icons/md';
 const Home: NextPage = () => {
   return (
