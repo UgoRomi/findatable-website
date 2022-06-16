@@ -2,13 +2,7 @@ import { GetServerSidePropsContext } from 'next';
 import { ClientSafeProvider, getProviders, signIn } from 'next-auth/react';
 import Image from 'next/image';
 
-const SignIn = ({
-  providers,
-  callbackUrl,
-}: {
-  providers: ClientSafeProvider[];
-  callbackUrl: string;
-}) => {
+const SignIn = ({ providers }: { providers: ClientSafeProvider[] }) => {
   return (
     <>
       <div className='min-h-full flex'>
@@ -204,7 +198,9 @@ const SignIn = ({
       {Object.values(providers).map((provider) => (
         <div key={provider.name}>
           <button
-            onClick={() => signIn(provider.id, { callbackUrl: callbackUrl })}
+            onClick={() =>
+              signIn(provider.id, { callbackUrl: provider.callbackUrl })
+            }
           >
             Sign in with {provider.name}
           </button>
@@ -219,6 +215,6 @@ export default SignIn;
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const providers = await getProviders();
   return {
-    props: { providers, callbackUrl: context.query.callbackUrl },
+    props: { providers },
   };
 }
