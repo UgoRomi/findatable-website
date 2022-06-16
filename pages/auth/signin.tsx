@@ -197,11 +197,7 @@ const SignIn = ({ providers }: { providers: ClientSafeProvider[] }) => {
       </div>
       {Object.values(providers).map((provider) => (
         <div key={provider.name}>
-          <button
-            onClick={() =>
-              signIn(provider.id, { callbackUrl: provider.callbackUrl })
-            }
-          >
+          <button onClick={() => signIn(provider.id, { callbackUrl: '/' })}>
             Sign in with {provider.name}
           </button>
         </div>
